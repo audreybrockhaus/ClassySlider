@@ -8,7 +8,7 @@
 (function( $ ){
   
   var delay = 1000;
-  
+  var sliders = [];
   
   var rotate = function(context, slides) {
     
@@ -41,11 +41,12 @@
     }, delay);
     
   };
-  
+      
   var methods = {
     init : function( options ) {
       this.each(function(){
         var $this = $(this);
+        sliders.push($this);
         // Get an array of all the slides in the slider
         var slides = $this.children();
         slides.addClass('slide');
@@ -53,6 +54,15 @@
           rotate($this, slides);
         }, delay);
       });
+      
+      // Give unique IDs to each slide
+      for (i = 0; i < sliders.length; i++) {
+        var slides = sliders[i].children();
+        for (j = 0; j < slides.length; j++) {
+          var slide = $(slides[j]);
+          slide.attr('id','slide' + i + '-' + j);
+        };
+      };
       
     }
   };
