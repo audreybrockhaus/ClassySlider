@@ -10,8 +10,10 @@
   var delay = 1000;
   
   var rotate = function(context, slides) {
-    //Deactivate first (active) slide
-    for slides
+    //Find & deactivate first (active) slide
+    for (var i = 0; i < slides.length; i++) {
+      
+    }
     //Activate next slide
     //Repeat until end of array
     //Activate first slide
@@ -22,6 +24,7 @@
     init : function( options ) {
       this.each(function(){
         var $this = $(this);
+        // Get an array of all the slides in the slider
         var slides = $this.find('.slide');
         var timer = setTimeout(function(){
           rotate($this, slides);
