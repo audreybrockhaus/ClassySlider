@@ -58,14 +58,15 @@
       // Give unique IDs to each slide
       for (i = 0; i < sliders.length; i++) {
         var slides = sliders[i].children();
-        sliders[i].append('<ul class="controls"></ul>');
+        sliders[i].append('<ol class="controls"></ol>');
         var controls = sliders[i].find('.controls');
 
         for (j = 0; j < slides.length; j++) {
           var slide = $(slides[j]);
           var slideID = 'slide' + i + '-' + j;
+          var slideNum = j + 1;
           slide.attr('id', slideID);
-          controls.append('<li><a href="#' + slideID +'"></a></li>');
+          controls.append('<li><a href="#' + slideID + '">' + slideNum + '</a></li>');
         };
       };
       
