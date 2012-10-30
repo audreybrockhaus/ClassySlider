@@ -39,7 +39,7 @@
     } else if ( typeof method === 'object' || ! method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error( 'Method ' +  method + ' does not exist on jQuery.jimmysslider' );
+      $.error( 'Method ' +  method + ' does not exist on jQuery.yajs' );
     }    
   
   };
