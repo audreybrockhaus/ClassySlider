@@ -3,20 +3,42 @@
     // Auto rotate - adjustable (global)
     // Click link to rotate - direct & dynamic
     // Define transition type (global)
-    // Display controls?
+    // Display controls
 
 (function( $ ){
   
   var delay = 1000;
   
+  
   var rotate = function(context, slides) {
-    //Find & deactivate first (active) slide
+    
+    var activeSlide;
+    
+    //Find & deactivate active slide
     for (var i = 0; i < slides.length; i++) {
-      
+      var slide = $(slides[i]);
+      if (slide.hasClass('active')) {
+        activeSlide = i;
+        slide.removeClass('active');
+      }
     }
+
     //Activate next slide
-    //Repeat until end of array
-    //Activate first slide
+    if (activeSlide === undefined) {
+      activeSlide = 0;
+    } else {
+      activeSlide++;
+    }
+
+    if (activeSlide >= slides.length) {
+      activeSlide = 0;
+    };
+    $(slides[activeSlide]).addClass('active');
+    
+    // Continue through other slides
+    var timer = setTimeout(function(){
+      rotate(context, slides);
+    }, delay);
     
   };
   
@@ -25,7 +47,8 @@
       this.each(function(){
         var $this = $(this);
         // Get an array of all the slides in the slider
-        var slides = $this.find('.slide');
+        var slides = $this.children();
+        slides.addClass('slide');
         var timer = setTimeout(function(){
           rotate($this, slides);
         }, delay);
@@ -34,7 +57,7 @@
     }
   };
 
-  $.fn.jimmysslider = function( method ) {
+  $.fn.yajs = function( method ) {
     
     // Method calling logic
     if ( methods[method] ) {
