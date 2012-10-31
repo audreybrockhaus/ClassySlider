@@ -41,6 +41,13 @@
     }, delay);
     
   };
+  
+  var controls = function() {
+    var $markers = $('.controls a')
+    $controls.each(function(e){
+      e.preventDefault();
+    });
+  };
       
   var methods = {
     init : function( options ) {
@@ -58,9 +65,11 @@
       // Give unique IDs to each slide
       for (i = 0; i < sliders.length; i++) {
         var slides = sliders[i].children();
+        // Add ol for markers
         sliders[i].append('<ol class="controls"></ol>');
         var controls = sliders[i].find('.controls');
-
+        
+        // Add markers (li) into ol
         for (j = 0; j < slides.length; j++) {
           var slide = $(slides[j]);
           var slideID = 'slide' + i + '-' + j;
