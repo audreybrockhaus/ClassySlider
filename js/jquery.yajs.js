@@ -42,13 +42,14 @@
     
   };
   
-  var controls = function() {
-    var $markers = $('.controls a')
-    $controls.each(function(e){
-      e.preventDefault();
-    });
+  var clickHandler = function(event){
+    event.preventDefault();
+    // Remove active class from current slide
+    // Find desired slide
+    // Add active class to desired slide
+    // Stop animation
   };
-      
+        
   var methods = {
     init : function( options ) {
       this.each(function(){
@@ -66,8 +67,9 @@
       for (i = 0; i < sliders.length; i++) {
         var slides = sliders[i].children();
         // Add ol for markers
-        sliders[i].append('<ol class="controls"></ol>');
-        var controls = sliders[i].find('.controls');
+        //sliders[i].append('<ol class="controls"></ol>');
+        //var controls = sliders[i].find('.controls');
+        var controls = $('<ol class="controls"></ol>');
         
         // Add markers (li) into ol
         for (j = 0; j < slides.length; j++) {
@@ -75,8 +77,14 @@
           var slideID = 'slide' + i + '-' + j;
           var slideNum = j + 1;
           slide.attr('id', slideID);
-          controls.append('<li><a href="#' + slideID + '">' + slideNum + '</a></li>');
+          //controls.append('<li><a href="#' + slideID + '">' + slideNum + '</a></li>');
+          var li = $('<li></li>');
+          var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>');
+          controls.append(li);
+          li.append(anchor);
+          anchor.click(clickHandler);
         };
+        sliders[i].append(controls);
       };
       
     }
