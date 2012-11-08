@@ -10,11 +10,8 @@
   var delay = 1000;
   var sliders = [];
   
-  var rotate = function(context, slides) {
-    
-    var activeSlide;
-    
-    //Find & deactivate active slide
+  var deactivateSlides = function(slides) {
+    var activeSlide = false;
     for (var i = 0; i < slides.length; i++) {
       var slide = $(slides[i]);
       if (slide.hasClass('active')) {
@@ -22,9 +19,18 @@
         slide.removeClass('active');
       }
     }
-
+    return activeSlide;
+  };
+  
+  var rotate = function(context) {
+    
+    var slides = context.slides;
+    
+    //Find & deactivate active slide
+    var activeSlide = deactivateSlides(slides);
+    
     //Activate next slide
-    if (activeSlide === undefined) {
+    if (activeSlide === false) {
       activeSlide = 0;
     } else {
       activeSlide++;
@@ -42,12 +48,15 @@
     
   };
   
-  var clickHandler = function(event){
+  var clickHandler = function(event, context){
     event.preventDefault();
+    console.log(context);
     // Remove active class from current slide
+    deactivateSlides(context.slides);
     // Find desired slide
+    
     // Add active class to desired slide
-    // Stop animation
+    // Stop timer -- clearTimeout(timerID)
   };
         
   var methods = {
@@ -56,19 +65,18 @@
         var $this = $(this);
         sliders.push($this);
         // Get an array of all the slides in the slider
-        var slides = $this.children();
-        slides.addClass('slide');
+        $this.slides = $this.children();
+        $this.slides.addClass('slide');
         var timer = setTimeout(function(){
-          rotate($this, slides);
+          rotate($this);
         }, delay);
       });
       
       // Give unique IDs to each slide
       for (i = 0; i < sliders.length; i++) {
-        var slides = sliders[i].children();
+        var slider = sliders[i];
+        var slides = sliders[i].slides;
         // Add ol for markers
-        //sliders[i].append('<ol class="controls"></ol>');
-        //var controls = sliders[i].find('.controls');
         var controls = $('<ol class="controls"></ol>');
         
         // Add markers (li) into ol
@@ -77,12 +85,14 @@
           var slideID = 'slide' + i + '-' + j;
           var slideNum = j + 1;
           slide.attr('id', slideID);
-          //controls.append('<li><a href="#' + slideID + '">' + slideNum + '</a></li>');
           var li = $('<li></li>');
           var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>');
           controls.append(li);
           li.append(anchor);
-          anchor.click(clickHandler);
+          anchor.click(
+            function(event) {
+              clickHandler(event, slider);
+            });
         };
         sliders[i].append(controls);
       };
