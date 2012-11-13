@@ -50,12 +50,12 @@
   
   var clickHandler = function(event, context){
     event.preventDefault();
-    console.log(context);
     // Remove active class from current slide
     deactivateSlides(context.slides);
     // Find desired slide
-    
+    var targetSlide = $(event.target).data('index');
     // Add active class to desired slide
+    context.slides.eq(targetSlide).addClass('active');
     // Stop timer -- clearTimeout(timerID)
   };
         
@@ -86,7 +86,7 @@
           var slideNum = j + 1;
           slide.attr('id', slideID);
           var li = $('<li></li>');
-          var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>');
+          var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>').data('index',j);
           controls.append(li);
           li.append(anchor);
           anchor.click(
