@@ -57,7 +57,7 @@
     var targetSlide = $(event.target).data('index');
     // Add active class to desired slide
     context.slides.eq(targetSlide).addClass('active');
-    // Stop timer -- clearTimeout(timerID)
+    // Stop timer
     clearTimeout(timer);
   };
         
