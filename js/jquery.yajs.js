@@ -9,6 +9,7 @@
   
   var delay = 1000;
   var sliders = [];
+  var timer;
   
   var deactivateSlides = function(slides) {
     var activeSlide = false;
@@ -42,7 +43,7 @@
     $(slides[activeSlide]).addClass('active');
     
     // Continue through other slides
-    var timer = setTimeout(function(){
+    timer = setTimeout(function(){
       rotate(context, slides);
     }, delay);
     
@@ -57,6 +58,7 @@
     // Add active class to desired slide
     context.slides.eq(targetSlide).addClass('active');
     // Stop timer -- clearTimeout(timerID)
+    clearTimeout(timer);
   };
         
   var methods = {
