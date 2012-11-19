@@ -72,9 +72,9 @@
           rotate($this);
         }, delay);
       });
-      
+
       // Give unique IDs to each slide
-      for (i = 0; i < sliders.length; i++) {
+      $(sliders).each(function(i) {
         var slider = sliders[i];
         var slides = sliders[i].slides;
         // Add ol for markers
@@ -91,13 +91,12 @@
           controls.append(li);
           li.append(anchor);
           anchor.click(
-            function(event) {
-              clickHandler(event, slider);
-            });
+            function (event){
+              clickHandler(event, slider)
+          });
         };
         slider.append(controls);
-      };
-      
+      });      
     }
   };
 
