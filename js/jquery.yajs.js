@@ -9,7 +9,6 @@
   
   var delay = 1000;
   var sliders = [];
-  var timer;
   
   var deactivateSlides = function(slides) {
     var activeSlide = false;
@@ -24,7 +23,7 @@
   };
   
   var rotate = function(context) {
-    
+    var $this = $(this);
     var slides = context.slides;
     
     //Find & deactivate active slide
@@ -43,7 +42,7 @@
     $(slides[activeSlide]).addClass('active');
     
     // Continue through other slides
-    timer = setTimeout(function(){
+    context.timer = setTimeout(function(){
       rotate(context, slides);
     }, delay);
     
@@ -58,7 +57,7 @@
     // Add active class to desired slide
     context.slides.eq(targetSlide).addClass('active');
     // Stop timer
-    clearTimeout(timer);
+    clearTimeout(context.timer);
   };
         
   var methods = {
@@ -69,7 +68,7 @@
         // Get an array of all the slides in the slider
         $this.slides = $this.children();
         $this.slides.addClass('slide');
-        var timer = setTimeout(function(){
+        $this.timer = setTimeout(function(){
           rotate($this);
         }, delay);
       });
@@ -96,7 +95,7 @@
               clickHandler(event, slider);
             });
         };
-        sliders[i].append(controls);
+        slider.append(controls);
       };
       
     }
