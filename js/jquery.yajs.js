@@ -7,7 +7,18 @@
 
 (function( $ ){
   
+  // Config defaults
   var delay = 1000;
+  var hasControls = true;
+  var transitionType = 'fade';
+    // Available transition types:
+      // Fade
+        // Fade out active slide, fade in next slide
+      // Slide udlr (string ie 'slide right')
+      // Reveal udlr
+      // Flip hv
+      // None
+    // Pass string in options, split string on space, define transitions (not direction) with switch case
   var sliders = [];
   
   var deactivateSlides = function(slides) {
@@ -62,6 +73,21 @@
         
   var methods = {
     init : function( options ) {
+    
+      if (options) {    
+        if (options.hasOwnProperty('delay')) {
+          var newDelay = parseInt(options.delay);
+          if (!isNaN(newDelay)) {
+            delay = newDelay;
+          }
+        }
+        if (options.hasOwnProperty('hasControls')) {
+          if (typeof options.hasControls === 'boolean') {
+            hasControls = options.hasControls;
+          }
+        }
+      }
+    
       this.each(function(){
         var $this = $(this);
         sliders.push($this);
@@ -77,25 +103,28 @@
       $(sliders).each(function(i) {
         var slider = sliders[i];
         var slides = sliders[i].slides;
-        // Add ol for markers
-        var controls = $('<ol class="controls"></ol>');
         
-        // Add markers (li) into ol
-        for (j = 0; j < slides.length; j++) {
-          var slide = $(slides[j]);
-          var slideID = 'slide' + i + '-' + j;
-          var slideNum = j + 1;
-          slide.attr('id', slideID);
-          var li = $('<li></li>');
-          var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>').data('index',j);
-          controls.append(li);
-          li.append(anchor);
-          anchor.click(
-            function (event){
-              clickHandler(event, slider)
-          });
+        if (hasControls) {
+          // Add ol for markers
+          var controls = $('<ol class="controls"></ol>');
+          
+          // Add markers (li) into ol
+          for (j = 0; j < slides.length; j++) {
+            var slide = $(slides[j]);
+            var slideID = 'slide' + i + '-' + j;
+            var slideNum = j + 1;
+            slide.attr('id', slideID);
+            var li = $('<li></li>');
+            var anchor = $('<a href="#' + slideID + '">' + slideNum + '</a>').data('index',j);
+            controls.append(li);
+            li.append(anchor);
+            anchor.click(
+              function (event){
+                clickHandler(event, slider)
+            });
+          }
         };
-        slider.append(controls);
+        if (controls) slider.append(controls);
       });      
     }
   };
