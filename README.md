@@ -1,8 +1,6 @@
 #YAjS
 
-##[Yet Another jQuery Slider](http://git.io/yajs "YAjS Project Page")
-
-This is a training excercise for me to learn JS/jQuery with the help of @ncrohn.
+##[Yet Another jQuery Slider](http://git.io/YAjS "YAjS Project Page")
 
 ###Scope:
 * Rotate N slides of HTML in content
