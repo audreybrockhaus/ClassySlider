@@ -73,7 +73,8 @@
         
   var methods = {
     init : function( options ) {
-    
+      
+      // Check for & apply user confiurations
       if (options) {    
         if (options.hasOwnProperty('delay')) {
           var newDelay = parseInt(options.delay);
