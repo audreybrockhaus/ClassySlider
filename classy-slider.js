@@ -21,8 +21,13 @@ var Utils = {
   },
 
   getChildren = function(elem) {
-    return Array.prototype.slice.apply(this, elem.children);
-    // switch to for loop
+    var children = [];
+
+    for (var i = 0; i < elem.children.length; i++) {
+      children.push(elem.children[i];
+    }
+
+    return children;
   }
 };
 
@@ -52,7 +57,7 @@ ClassySlider.prototype.initVars = function () {
   this.slides = Utils.getChildren(this.options.el);
 
   this.activeSlideIndex = this.options.startFrom;
-  this.activeSlide = this.slides[this.options.startFrom];
+  this.activeSlide = this.slides[this.activeSlideIndex];
 };
 
 ClassySlider.prototype.setBinds = function () {
