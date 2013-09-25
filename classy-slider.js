@@ -6,7 +6,6 @@
     // Display controls
 
 var Utils = {
-  // innerText
   // eventListener
   createElem: function(elem) {
     return document.createElement(elem);
@@ -30,6 +29,14 @@ var Utils = {
     }
 
     return children;
+  },
+
+  setText: function(elem, string) {
+    if ('innerText' in elem) {
+      elem.innerText = string;
+    } else {
+      elem.textContent = string;
+    }
   },
 
   removeClass: function(elem, className) {
@@ -138,7 +145,7 @@ ClassySlider.prototype.initControls = function () {
   for (var i = 0; i < this.slides.length; i++) {
     var control = document.createElement('li'),
         _this = this;
-    control.innerText = i + 1;
+    Utils.setText(control, i + 1);
 
     this.addListener(control, i);
     controls.appendChild(control);
