@@ -6,9 +6,16 @@
     // Display controls
 
 var Utils = {
-  // eventListener
   createElem: function(elem) {
     return document.createElement(elem);
+  },
+
+  createListener: function(elem, evnt, callback) {
+    if ('addEventListener' in elem) {
+      elem.addEventListener(evnt, callback);
+    } else {
+      elem.attachEvent('on' + evnt, callback);
+    }
   },
 
   extend: function(obj1, obj2) {
@@ -123,11 +130,13 @@ ClassySlider.prototype.goToPrevious = function () {
 ClassySlider.prototype.addListener = function (elem, index) {
   var _this = this;
 
-  elem.addEventListener('click', function () {
+  var clickEvent = function () {
     clearInterval(_this.timer);
     _this.goToSlide(index);
     _this.setTimer();
-  });
+  };
+
+  Utils.createListener(elem, 'click', clickEvent);
 };
 
 ClassySlider.prototype.setTimer = function () {
