@@ -1,0 +1,9 @@
+.slider > li {
+  border: 1px solid black;
+  display: block;
+  padding: 2px 5px;
+}
+
+.active {
+  background: red;
+}

@@ -31,7 +31,6 @@ var Utils = {
   },
 
   removeClass: function(elem, className) {
-    console.log(elem);
     var classes = elem.className.split(/\s+/),
         index = classes.indexOf(className);
 
@@ -60,7 +59,7 @@ function ClassySlider (opts) {
   this.options = opts;
 
   this.initVars();
-  this.setBinds();
+  this.initSlider();
 };
 
 ClassySlider.prototype.initVars = function () {
@@ -75,9 +74,6 @@ ClassySlider.prototype.initVars = function () {
 
   this.activeSlideIndex = this.targetSlideIndex = this.options.startFrom;
   this.activeSlide = this.targetSlide = this.slides[this.activeSlideIndex];
-};
-
-ClassySlider.prototype.setBinds = function () {
 };
 
 ClassySlider.prototype.updateState = function (active, target) {
@@ -110,4 +106,39 @@ ClassySlider.prototype.goToNext = function () {
 
 ClassySlider.prototype.goToPrevious = function () {
   this.goToSlide(this.activeSlideIndex - 1);
+};
+
+ClassySlider.prototype.initControls = function () {
+  var controls = document.createElement('ul');
+  controls.className = 'slider-controls';
+
+  for (var i = 0; i < this.slides.length; i++) {
+    var control = document.createElement('li'),
+        _this = this;
+    control.innerText = i + 1;
+
+    control.addEventListener('click', function () {
+      clearInterval(_this.timer);
+      _this.goToSlide(i);
+    });
+    
+    controls.appendChild(control);
+  }
+
+  this.options.el.appendChild(controls);
+
+};
+
+ClassySlider.prototype.initSlider = function () {
+  var _this = this;
+
+  this.goToSlide(this.activeSlide);
+
+  this.timer = setInterval(function () {
+    _this.goToNext(); 
+  }, this.options.timer);
+
+  if (this.options.controls) {
+    this.initControls();
+  }
 };
