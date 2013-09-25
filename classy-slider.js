@@ -59,7 +59,7 @@ function ClassySlider (opts) {
   this.options = opts;
 
   this.initVars();
-  this.initSlider();
+  this.setBinds();
 };
 
 ClassySlider.prototype.initVars = function () {
@@ -120,6 +120,9 @@ ClassySlider.prototype.initControls = function () {
     control.addEventListener('click', function () {
       clearInterval(_this.timer);
       _this.goToSlide(i);
+      setTimeout(function () {
+        _this.initSlider();
+      }, _this.options.timer);
     });
     
     controls.appendChild(control);
@@ -137,6 +140,10 @@ ClassySlider.prototype.initSlider = function () {
   this.timer = setInterval(function () {
     _this.goToNext(); 
   }, this.options.timer);
+};
+
+ClassySlider.prototype.setBinds = function () {
+  this.initSlider();
 
   if (this.options.controls) {
     this.initControls();
