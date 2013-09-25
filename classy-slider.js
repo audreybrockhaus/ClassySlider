@@ -6,6 +6,8 @@
     // Display controls
 
 var Utils = {
+  // innerText
+  // eventListener
   createElem: function(elem) {
     return document.createElement(elem);
   },
@@ -54,12 +56,15 @@ function ClassySlider (opts) {
     startFrom: 0,
     timer: 2000,
     transition: 'fade'
+    // direction
+    // controlTrigger
+    // pauseOnHover
   }
 
   this.options = opts;
 
   this.initVars();
-  this.setBinds();
+  this.initSlider();
 };
 
 ClassySlider.prototype.initVars = function () {
@@ -108,6 +113,24 @@ ClassySlider.prototype.goToPrevious = function () {
   this.goToSlide(this.activeSlideIndex - 1);
 };
 
+ClassySlider.prototype.addListener = function (elem, index) {
+  var _this = this;
+
+  elem.addEventListener('click', function () {
+    clearInterval(_this.timer);
+    _this.goToSlide(index);
+    _this.setTimer();
+  });
+};
+
+ClassySlider.prototype.setTimer = function () {
+  var _this = this;
+
+  this.timer = setInterval(function () {
+    _this.goToNext(); 
+  }, this.options.timer);
+};
+
 ClassySlider.prototype.initControls = function () {
   var controls = document.createElement('ul');
   controls.className = 'slider-controls';
@@ -117,14 +140,7 @@ ClassySlider.prototype.initControls = function () {
         _this = this;
     control.innerText = i + 1;
 
-    control.addEventListener('click', function () {
-      clearInterval(_this.timer);
-      _this.goToSlide(i);
-      setTimeout(function () {
-        _this.initSlider();
-      }, _this.options.timer);
-    });
-    
+    this.addListener(control, i);
     controls.appendChild(control);
   }
 
@@ -136,14 +152,7 @@ ClassySlider.prototype.initSlider = function () {
   var _this = this;
 
   this.goToSlide(this.activeSlide);
-
-  this.timer = setInterval(function () {
-    _this.goToNext(); 
-  }, this.options.timer);
-};
-
-ClassySlider.prototype.setBinds = function () {
-  this.initSlider();
+  this.setTimer();
 
   if (this.options.controls) {
     this.initControls();
