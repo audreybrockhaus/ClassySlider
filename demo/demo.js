@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var opts = {
     el: document.getElementById('slider')
   };

@@ -6,11 +6,11 @@
     // Display controls
 
 var Utils = {
-  createElem: function(elem) {
+  createElem: function (elem) {
     return document.createElement(elem);
   },
 
-  createListener: function(elem, evnt, callback) {
+  createListener: function (elem, evnt, callback) {
     if ('addEventListener' in elem) {
       elem.addEventListener(evnt, callback);
     } else {
@@ -18,17 +18,17 @@ var Utils = {
     }
   },
 
-  extend: function(obj1, obj2) {
+  extend: function (obj1, obj2) {
     for (var key in obj2) {
       if (obj2.hasOwnProperty(key)) {
-        obj1[key] = obj2[key]
+        obj1[key] = obj2[key];
       }
     }
 
     return obj1;
   },
 
-  getChildren: function(elem) {
+  getChildren: function (elem) {
     var children = [];
 
     for (var i = 0; i < elem.children.length; i++) {
@@ -38,7 +38,7 @@ var Utils = {
     return children;
   },
 
-  setText: function(elem, string) {
+  setText: function (elem, string) {
     if ('innerText' in elem) {
       elem.innerText = string;
     } else {
@@ -46,7 +46,7 @@ var Utils = {
     }
   },
 
-  removeClass: function(elem, className) {
+  removeClass: function (elem, className) {
     var classes = elem.className.split(/\s+/),
         index = classes.indexOf(className);
 
@@ -57,13 +57,13 @@ var Utils = {
     }
   },
 
-  addClass: function(elem, className) {
+  addClass: function (elem, className) {
     Utils.removeClass(elem, className);
     elem.className += ' ' + className;
   }
 };
 
-function ClassySlider (opts) {
+function ClassySlider(opts) {
   this.defaults = {
     controls: true,
     controlTrigger: 'click',
@@ -73,13 +73,13 @@ function ClassySlider (opts) {
     timer: 2000,
     transition: 'fade'
     // pauseOnHover
-  }
+  };
 
   this.options = opts;
 
   this.initVars();
   this.initSlider();
-};
+}
 
 ClassySlider.prototype.initVars = function () {
   if (!this.options.el) {
@@ -166,8 +166,7 @@ ClassySlider.prototype.initControls = function () {
   Utils.addClass(controls, 'classy-slider-controls');
 
   for (var i = 0; i < this.slides.length; i++) {
-    var control = document.createElement('li'),
-        _this = this;
+    var control = document.createElement('li');
     Utils.setText(control, i + 1);
 
     this.addListener(control, i);
@@ -190,8 +189,6 @@ ClassySlider.prototype.initControls = function () {
 };
 
 ClassySlider.prototype.initSlider = function () {
-  var _this = this;
-
   this.goToSlide(this.activeSlide);
   this.setTimer();
   Utils.addClass(this.options.el, 'classy-slider');

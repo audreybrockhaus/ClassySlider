@@ -1,9 +1,8 @@
 {
   "globals"  :{
-    "define" :true
+    "ClassySlider": true,
+    "module" :true
   },
-  "jquery"   :true,
-  "maxerr"   :20,
 
   "bitwise"  :true,
   "camelcase":true,

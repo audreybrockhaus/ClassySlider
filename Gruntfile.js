@@ -1,14 +1,19 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.initConfig({
-  	pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON('package.json'),
 
     mocha: {
-      index: [ 'test/index.html' ]
+      index: ['test/index.html']
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'classy-slider.js', 'test/**/*.js', 'demo/**/*.js'],
+      files: [
+        'Gruntfile.js',
+        'classy-slider.js',
+        //'test/**/*.js',
+        'demo/**/*.js'
+      ],
       options: {
         ignores: ['test/lib/**/*.js'],
         jshintrc: './.jshintrc'
