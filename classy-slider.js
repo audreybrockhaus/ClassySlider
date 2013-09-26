@@ -65,9 +65,11 @@ var Utils = {
 
 function ClassySlider(opts) {
   this.defaults = {
+    classPrefix: 'classy-slider-',
     controls: true,
     controlTrigger: 'click',
     direction: 'forward',
+    dynamicControls: true,
     el: Utils.createElem('div'),
     startFrom: 0,
     timer: 2000,
@@ -162,29 +164,38 @@ ClassySlider.prototype.setTimer = function () {
 };
 
 ClassySlider.prototype.initControls = function () {
-  var controls = document.createElement('ul');
-  Utils.addClass(controls, 'classy-slider-controls');
+  var controls = Utils.createElem('ul');
+  Utils.addClass(controls, this.options.classPrefix + 'controls');
 
   for (var i = 0; i < this.slides.length; i++) {
-    var control = document.createElement('li');
+    var control = Utils.createElem('li');
     Utils.setText(control, i + 1);
 
     this.addListener(control, i);
     controls.appendChild(control);
   }
 
+  this.controls = controls;
   this.options.el.appendChild(controls);
+  
+  if (this.options.dynamicControls) {
+    this.initDynamicControls();
+  }
+};
 
-  var prevButton = document.createElement('span');
-  Utils.addClass(prevButton, 'classy-slider-control-previous');
+ClassySlider.prototype.initDynamicControls = function () {
+  var prevButton = Utils.createElem('span');
+  Utils.addClass(prevButton, this.options.classPrefix + 'control-previous');
   Utils.setText(prevButton, 'Previous');
   this.addListener(prevButton, 'previous');
+  this.prevButton = prevButton;
   this.options.el.appendChild(prevButton);
 
-  var nextButton = document.createElement('span');
-  Utils.addClass(nextButton, 'classy-slider-control-next');
+  var nextButton = Utils.createElem('span');
+  Utils.addClass(nextButton, this.options.classPrefix + 'control-next');
   Utils.setText(nextButton, 'Next');
   this.addListener(nextButton, 'next');
+  this.nextButton = nextButton;
   this.options.el.appendChild(nextButton);
 };
 
