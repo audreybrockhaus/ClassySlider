@@ -120,11 +120,19 @@ ClassySlider.prototype.goToSlide = function (index) {
 };
 
 ClassySlider.prototype.goToNext = function () {
-  this.goToSlide(this.activeSlideIndex + 1);
+  if (this.options.direction === 'backward') {
+    this.goToSlide(this.activeSlideIndex - 1);
+  } else {
+    this.goToSlide(this.activeSlideIndex + 1);
+  }
 };
 
 ClassySlider.prototype.goToPrevious = function () {
-  this.goToSlide(this.activeSlideIndex - 1);
+  if (this.options.direction === 'backward') {
+    this.goToSlide(this.activeSlideIndex + 1);
+  } else {
+    this.goToSlide(this.activeSlideIndex - 1);
+  }
 };
 
 ClassySlider.prototype.addListener = function (elem, index) {
@@ -132,7 +140,13 @@ ClassySlider.prototype.addListener = function (elem, index) {
 
   var callback = function () {
     clearInterval(_this.timer);
-    _this.goToSlide(index);
+    if (index === 'next') {
+      _this.goToNext();
+    } else if (index === 'previous') {
+      _this.goToPrevious();
+    } else {
+      _this.goToSlide(index);
+    }
     _this.setTimer();
   };
 
@@ -143,17 +157,13 @@ ClassySlider.prototype.setTimer = function () {
   var _this = this;
 
   this.timer = setInterval(function () {
-    if (_this.options.direction === 'backward') {
-      _this.goToPrevious();
-    } else {
-      _this.goToNext();
-    }
+    _this.goToNext();
   }, this.options.timer);
 };
 
 ClassySlider.prototype.initControls = function () {
   var controls = document.createElement('ul');
-  controls.className = 'slider-controls';
+  Utils.addClass(controls, 'classy-slider-controls');
 
   for (var i = 0; i < this.slides.length; i++) {
     var control = document.createElement('li'),
@@ -166,6 +176,17 @@ ClassySlider.prototype.initControls = function () {
 
   this.options.el.appendChild(controls);
 
+  var prevButton = document.createElement('span');
+  Utils.addClass(prevButton, 'classy-slider-control-previous');
+  Utils.setText(prevButton, 'Previous');
+  this.addListener(prevButton, 'previous');
+  this.options.el.appendChild(prevButton);
+
+  var nextButton = document.createElement('span');
+  Utils.addClass(nextButton, 'classy-slider-control-next');
+  Utils.setText(nextButton, 'Next');
+  this.addListener(nextButton, 'next');
+  this.options.el.appendChild(nextButton);
 };
 
 ClassySlider.prototype.initSlider = function () {
@@ -173,6 +194,7 @@ ClassySlider.prototype.initSlider = function () {
 
   this.goToSlide(this.activeSlide);
   this.setTimer();
+  Utils.addClass(this.options.el, 'classy-slider');
 
   if (this.options.controls) {
     this.initControls();
