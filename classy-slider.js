@@ -66,6 +66,7 @@ var Utils = {
 function ClassySlider (opts) {
   this.defaults = {
     controls: true,
+    direction: 'forward',
     el: Utils.createElem('div'),
     startFrom: 0,
     timer: 2000,
@@ -143,7 +144,11 @@ ClassySlider.prototype.setTimer = function () {
   var _this = this;
 
   this.timer = setInterval(function () {
-    _this.goToNext(); 
+    if (_this.options.direction === 'backward') {
+      _this.goToPrevious();
+    } else {
+      _this.goToNext();
+    }
   }, this.options.timer);
 };
 
