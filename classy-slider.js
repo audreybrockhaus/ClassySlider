@@ -66,13 +66,12 @@ var Utils = {
 function ClassySlider (opts) {
   this.defaults = {
     controls: true,
+    controlTrigger: 'click',
     direction: 'forward',
     el: Utils.createElem('div'),
     startFrom: 0,
     timer: 2000,
     transition: 'fade'
-    // direction
-    // controlTrigger
     // pauseOnHover
   }
 
@@ -131,13 +130,13 @@ ClassySlider.prototype.goToPrevious = function () {
 ClassySlider.prototype.addListener = function (elem, index) {
   var _this = this;
 
-  var clickEvent = function () {
+  var callback = function () {
     clearInterval(_this.timer);
     _this.goToSlide(index);
     _this.setTimer();
   };
 
-  Utils.createListener(elem, 'click', clickEvent);
+  Utils.createListener(elem, this.options.controlTrigger, callback);
 };
 
 ClassySlider.prototype.setTimer = function () {
