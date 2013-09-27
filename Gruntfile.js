@@ -62,10 +62,12 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-node-version');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
+  grunt.registerTask('prepare', ['node_version', 'sass']);
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('run', ['connect', 'watch']);
+  grunt.registerTask('run', ['node_version', 'connect', 'watch']);
 };
