@@ -90,7 +90,8 @@ function ClassySlider(opts) {
 
 ClassySlider.prototype.updateClass = function (i) {
   var start = this.activeSlideIndex,
-      prefix = this.options.classPrefix;
+      prefix = this.options.classPrefix,
+      last = this.slides[this.slides.length - 1];
 
   if (i < start) {
     Utils.addClass(this.slides[i], prefix + 'left');
@@ -104,6 +105,18 @@ ClassySlider.prototype.updateClass = function (i) {
     Utils.addClass(this.slides[i], prefix + 'active');
     Utils.removeClass(this.slides[i], prefix + 'right');
     Utils.removeClass(this.slides[i], prefix + 'left');
+  }
+
+  if (start === this.slides.length - 1) {
+    Utils.addClass(this.slides[0], prefix + 'wrap');
+  } else {
+    Utils.removeClass(this.slides[0], prefix + 'wrap');
+  }
+
+  if (start === 0) {
+    Utils.addClass(last, prefix + 'wrap');
+  } else {
+    Utils.removeClass(last, prefix + 'wrap');
   }
 };
 
