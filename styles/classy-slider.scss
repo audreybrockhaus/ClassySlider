@@ -1,0 +1,9 @@
+@import 'variables';
+
+.classy-slider {
+  position: relative;  
+}
+
+#{$slides} {
+  position: absolute;
+}

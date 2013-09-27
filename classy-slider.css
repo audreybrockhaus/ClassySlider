@@ -1,0 +1,5 @@
+.classy-slider {
+  position: relative; }
+
+.classy-slider-left, .classy-slider-right, .classy-slider-active {
+  position: absolute; }
