@@ -20,7 +20,7 @@
     z-index: 3;
   }
 
-  #{$right} {
+  #{$right}, #{$wrapEnd} {
     left: 0;
   }
 
@@ -52,7 +52,7 @@
     z-index: 3;
   }
 
-  #{$right} {
+  #{$right}, #{$wrapEnd} {
     left: 0;
   }
 
@@ -84,7 +84,7 @@
     z-index: 3;
   }
 
-  #{$right} {
+  #{$right}, #{$wrapEnd} {
     top: 0;
   }
 
@@ -116,7 +116,7 @@
     z-index: 3;
   }
 
-  #{$right} {
+  #{$right}, #{$wrapEnd} {
     top: 0;
   }
 
