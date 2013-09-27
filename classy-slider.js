@@ -69,12 +69,17 @@ function ClassySlider(opts) {
     controls: true,
     controlTrigger: 'click',
     direction: 'forward',
+      // 'backward'
     dynamicControls: true,
     el: Utils.createElem('div'),
     startFrom: 0,
+    // pauseOnHover
     timer: 2000,
     transition: 'fade'
-    // pauseOnHover
+      // 'slide-' (udlr)
+      // 'cover-' (udlr)
+      // 'reveal-' (udlr)
+      // false
   };
 
   this.options = opts;
@@ -104,6 +109,10 @@ ClassySlider.prototype.updateClass = function (i) {
 
 ClassySlider.prototype.initClasses = function () {
   Utils.addClass(this.options.el, 'classy-slider');
+
+  if (this.options.transition) {
+    Utils.addClass(this.options.el, this.options.classPrefix + this.options.transition);
+  }
 
   for (var i = 0; i < this.slides.length; i++) {
     this.updateClass(i);

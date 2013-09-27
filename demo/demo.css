@@ -1,0 +1,25 @@
+.classy-slider-left, .classy-slider-right, .classy-slider-active {
+  height: 200px;
+  margin: 100px auto 0;
+  width: 500px; }
+
+li {
+  background: red;
+  list-style: none; }
+  li:nth-child(2) {
+    background: green; }
+  li:nth-child(3) {
+    background: yellow; }
+  li:nth-child(4) {
+    background: aqua; }
+  li:nth-child(5) {
+    background: brown; }
+  li:nth-child(6) {
+    background: gray; }
+  li:nth-child(7) {
+    background: purple; }
+  li:nth-child(8) {
+    background: orange; }
+
+.classy-slider-controls {
+  display: none; }

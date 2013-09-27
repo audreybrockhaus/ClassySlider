@@ -1,12 +1,32 @@
 //----------------
 // Classes        
 //----------------
+// Change this if you aren't using the default classPrefix option
 $prefix: '.classy-slider-';
+
+// Slides
 $slider: '.classy-slider';
 $slides: '#{$prefix}left, #{$prefix}right, #{$prefix}active';
 $left: '#{$prefix}left';
 $right: '#{$prefix}right';
 $active: '#{$prefix}left';
+
+// Controls
 $controls: '#{$prefix}controls';
 $next: '#{$prefix}control-next';
 $previous: '#{$prefix}control-previous';
+
+// Transitions
+$fade: '#{$prefix}fade';
+$slideUp: '#{$prefix}slide-up';
+$slideDown: '#{$prefix}slide-down';
+$slideLeft: '#{$prefix}slide-left';
+$slideRight: '#{$prefix}slide-right';
+$coverUp: '#{$prefix}cover-up';
+$coverDown: '#{$prefix}cover-down';
+$coverLeft: '#{$prefix}cover-left';
+$coverRight: '#{$prefix}cover-right';
+$revealUp: '#{$prefix}reveal-up';
+$revealDown: '#{$prefix}reveal-down';
+$revealLeft: '#{$prefix}reveal-left';
+$revealRight: '#{$prefix}reveal-right';

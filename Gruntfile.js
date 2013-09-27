@@ -36,8 +36,7 @@ module.exports = function (grunt) {
     connect: {
       server: {
         options: {
-          hostname: 'localhost',
-          open: true
+          hostname: 'localhost'
         }
       }
     },
@@ -51,7 +50,7 @@ module.exports = function (grunt) {
         files: ['styles/**/*.scss'],
         tasks: ['sass'],
         options: {
-          atBegin: true,
+          //atBegin: true,
           spawn: false
         }
       }
