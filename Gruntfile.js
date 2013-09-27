@@ -33,19 +33,37 @@ module.exports = function (grunt) {
       }
     },
 
-    exec: {
-      run: {
-        cmd: 'python -m SimpleHTTPServer'
+    connect: {
+      server: {
+        options: {
+          hostname: 'localhost',
+          open: true
+        }
+      }
+    },
+
+    watch: {
+      scripts: {
+        files: ['**/*.js'],
+        tasks: ['jshint']
+      },
+      scss: {
+        files: ['styles/**/*.scss'],
+        tasks: ['sass'],
+        options: {
+          atBegin: true,
+          spawn: false
+        }
       }
     }
-
   });
 
   grunt.loadNpmTasks('grunt-mocha');
-  grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('run', ['exec:run']);
+  grunt.registerTask('run', ['connect', 'watch']);
 };
