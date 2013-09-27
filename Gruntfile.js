@@ -20,6 +20,19 @@ module.exports = function (grunt) {
       }
     },
 
+    sass: {
+      dist: {
+        files: {
+          'classy-slider.css': 'styles/classy-slider.scss'
+        }
+      },
+      dev: {
+        files: {
+          'demo/demo.css': 'styles/demo.scss'
+        }
+      }
+    },
+
     exec: {
       run: {
         cmd: 'python -m SimpleHTTPServer'
@@ -30,6 +43,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
