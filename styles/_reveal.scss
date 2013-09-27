@@ -1,8 +1,8 @@
 //-------------------
-// Slide Left        
+// Reval Left        
 //-------------------
 
-#{$slideLeft} {
+#{$revealLeft} {
   overflow-x: hidden;
 
   #{$slides} {
@@ -17,24 +17,24 @@
 
   #{$left} {
     left: -100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   #{$right} {
-    left: 100%;
+    left: 0;
   }
 
   #{$active} {
     left: 0;
-    z-index: 3;
+    z-index: 2;
   }
 }
 
 //-------------------
-// Slide Right       
+// Reveal Right      
 //-------------------
 
-#{$slideRight} {
+#{$revealRight} {
   overflow-x: hidden;
 
   #{$slides} {
@@ -49,24 +49,24 @@
 
   #{$left} {
     left: 100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   #{$right} {
-    left: -100%;
+    left: 0;
   }
 
   #{$active} {
     left: 0;
-    z-index: 3;
+    z-index: 2;
   }
 }
 
 //-------------------
-// Slide Up          
+// Reveal Up         
 //-------------------
 
-#{$slideUp} {
+#{$revealUp} {
   overflow-y: hidden;
 
   #{$slides} {
@@ -81,24 +81,24 @@
 
   #{$left} {
     top: -100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   #{$right} {
-    top: 100%;
+    top: 0;
   }
 
   #{$active} {
     top: 0;
-    z-index: 3;
+    z-index: 2;
   }
 }
 
 //-------------------
-// Slide Down        
+// Reveal Down       
 //-------------------
 
-#{$slideDown} {
+#{$revealDown} {
   overflow-y: hidden;
 
   #{$slides} {
@@ -113,15 +113,16 @@
 
   #{$left} {
     top: 100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   #{$right} {
-    top: -100%;
+    top: 0;
   }
 
   #{$active} {
     top: 0;
-    z-index: 3;
+    z-index: 2;
   }
 }
+
