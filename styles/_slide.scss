@@ -3,7 +3,7 @@
 //-------------------
 
 #{$slideLeft} {
-  //overflow-x: hidden;
+  overflow-x: hidden;
 
   #{$slides} {
     @include transition(left $duration ease $delay);
