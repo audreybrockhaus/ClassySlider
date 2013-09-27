@@ -1,0 +1,140 @@
+//-------------------
+// Cover Left        
+//-------------------
+
+#{$coverLeft} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+    margin: {
+      left: 0;
+      right: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+
+  #{$left} {
+    left: 0;
+    
+    &:last-child {
+      z-index: 2;
+    }
+  }
+
+  #{$right} {
+    left: 100%;
+  }
+
+  #{$active} {
+    left: 0;
+    z-index: 3;
+  }
+}
+
+//-------------------
+// Cover Right       
+//-------------------
+
+#{$coverRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+    margin: {
+      left: 0;
+      right: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+
+  #{$left} {
+    left: 0;
+    
+    &:last-child {
+      z-index: 2;
+    }
+  }
+
+  #{$right} {
+    left: -100%;
+  }
+
+  #{$active} {
+    left: 0;
+    z-index: 3;
+  }
+}
+
+//-------------------
+// Cover Up          
+//-------------------
+
+#{$coverUp} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+    margin: {
+      bottom: 0;
+      top: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+
+  #{$left} {
+    top: 0;
+    
+    &:last-child {
+      z-index: 2;
+    }
+  }
+
+  #{$right} {
+    top: 100%;
+  }
+
+  #{$active} {
+    top: 0;
+    z-index: 3;
+  }
+}
+
+//-------------------
+// Cover Down        
+//-------------------
+
+#{$coverDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+    margin: {
+      bottom: 0;
+      top: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+
+  #{$left} {
+    top: 0;
+    
+    &:last-child {
+      z-index: 2;
+    }
+  }
+
+  #{$right} {
+    top: -100%;
+  }
+
+  #{$active} {
+    top: 0;
+    z-index: 3;
+  }
+}
+
