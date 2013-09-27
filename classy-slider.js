@@ -108,15 +108,15 @@ ClassySlider.prototype.updateClass = function (i) {
   }
 
   if (start === this.slides.length - 1) {
-    Utils.addClass(this.slides[0], prefix + 'wrap');
+    Utils.addClass(this.slides[0], prefix + 'wrap-begin');
   } else {
-    Utils.removeClass(this.slides[0], prefix + 'wrap');
+    Utils.removeClass(this.slides[0], prefix + 'wrap-begin');
   }
 
   if (start === 0) {
-    Utils.addClass(last, prefix + 'wrap');
+    Utils.addClass(last, prefix + 'wrap-end');
   } else {
-    Utils.removeClass(last, prefix + 'wrap');
+    Utils.removeClass(last, prefix + 'wrap-end');
   }
 };
 
