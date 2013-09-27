@@ -206,12 +206,14 @@ ClassySlider.prototype.addListener = function (elem, index) {
     clearInterval(_this.timer);
     if (index === 'next') {
       _this.goToNext();
+      _this.setTimer();
     } else if (index === 'previous') {
       _this.goToPrevious();
+      _this.setTimer();
     } else {
       _this.goToSlide(index);
+      _this.setTimer(true);
     }
-    _this.setTimer(true);
   };
 
   Utils.createListener(elem, this.options.controlTrigger, callback);
