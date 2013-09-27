@@ -1,9 +1,16 @@
 @import 'variables';
 
-#{$slides} {
+#{$slider} {
   height: 200px;
   margin: 100px auto 0;
   width: 500px;
+}
+
+#{$slides} {
+  height: 200px;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 
 li {
@@ -21,4 +28,16 @@ li {
 
 #{$controls} {
   display: none;
+}
+
+#{$previous} {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+}
+
+#{$next} {
+  position: absolute;
+  bottom: -25px;
+  left: 80%;
 }
