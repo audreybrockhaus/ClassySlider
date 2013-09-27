@@ -1,0 +1,19 @@
+#{$fade} {
+  #{$slides} {
+    @include transition(opacity $duration ease $delay,
+                        filter $duration ease $delay);
+    display: block;
+  }
+  
+  #{$hidden} {
+    opacity: 0;
+    filter: unquote('alpha(opacity=0)');
+    z-index: -1;
+  }
+
+  #{$active} {
+    opacity: 1;
+    filter: unquote('alpha(opacity=100)');
+    z-index: 1;
+  }
+}

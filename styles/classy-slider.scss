@@ -1,9 +1,29 @@
 @import 'variables';
+@import 'mixins';
+
+//------------------
+// Defaults         
+//------------------
 
 .classy-slider {
   position: relative;  
 }
 
 #{$slides} {
+  left: 0;
   position: absolute;
+  top: 0;
 }
+
+#{$left}, #{$right} {
+  display: none;
+}
+
+#{$active} {
+  display: block;
+}
+
+//------------------
+// Transitions      
+//------------------
+@import 'fade';

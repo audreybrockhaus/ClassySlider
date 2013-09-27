@@ -1,15 +1,25 @@
 //----------------
+// Units          
+//----------------
+
+// Transitions
+$duration: 0.5s;
+$delay: 0s;
+
+//----------------
 // Classes        
 //----------------
+
 // Change this if you aren't using the default classPrefix option
 $prefix: '.classy-slider-';
 
 // Slides
 $slider: '.classy-slider';
-$slides: '#{$prefix}left, #{$prefix}right, #{$prefix}active';
 $left: '#{$prefix}left';
 $right: '#{$prefix}right';
-$active: '#{$prefix}left';
+$active: '#{$prefix}active';
+$hidden: '#{$left}, #{$right}';
+$slides: '#{$left}, #{$right}, #{$active}';
 
 // Controls
 $controls: '#{$prefix}controls';
