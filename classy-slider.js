@@ -83,6 +83,33 @@ function ClassySlider(opts) {
   this.initSlider();
 }
 
+ClassySlider.prototype.updateClass = function (i) {
+  var start = this.activeSlideIndex,
+      prefix = this.options.classPrefix;
+
+  if (i < start) {
+    Utils.addClass(this.slides[i], prefix + 'left');
+    Utils.removeClass(this.slides[i], prefix + 'right');
+    Utils.removeClass(this.slides[i], prefix + 'active');
+  } else if (i > start) {
+    Utils.addClass(this.slides[i], prefix + 'right');
+    Utils.removeClass(this.slides[i], prefix + 'left');
+    Utils.removeClass(this.slides[i], prefix + 'active');
+  } else {
+    Utils.addClass(this.slides[i], prefix + 'active');
+    Utils.removeClass(this.slides[i], prefix + 'right');
+    Utils.removeClass(this.slides[i], prefix + 'left');
+  }
+};
+
+ClassySlider.prototype.initClasses = function () {
+  Utils.addClass(this.options.el, 'classy-slider');
+
+  for (var i = 0; i < this.slides.length; i++) {
+    this.updateClass(i);
+  }
+};
+
 ClassySlider.prototype.initVars = function () {
   if (!this.options.el) {
     return;
@@ -93,15 +120,29 @@ ClassySlider.prototype.initVars = function () {
 
   this.slides = Utils.getChildren(this.options.el);
 
-  this.activeSlideIndex = this.targetSlideIndex = this.options.startFrom;
-  this.activeSlide = this.targetSlide = this.slides[this.activeSlideIndex];
+  this.activeSlideIndex = this.targetSlideIndex = this.previousSlideIndex = this.options.startFrom;
+  this.activeSlide = this.targetSlide = this.previousSlide = this.slides[this.activeSlideIndex];
+
+  this.initClasses();
 };
 
-ClassySlider.prototype.updateState = function (active, target) {
+ClassySlider.prototype.updateClasses = function () {
+  this.updateClass(this.targetSlideIndex);
+  this.updateClass(this.previousSlideIndex);
+  this.updateClass(this.activeSlideIndex);
+};
+
+ClassySlider.prototype.updateState = function (active, target, previous) {
   this.activeSlideIndex = active;
   this.activeSlide = this.slides[active];
-  this.targetSlideIndex = target;
-  this.targetSlide = this.slides[target];
+  if (target >= 0) {
+    this.targetSlideIndex = target;
+    this.targetSlide = this.slides[this.targetSlideIndex];
+  }
+  if (previous >= 0) {
+    this.previousSlideIndex = previous;
+    this.previousSlide = this.slides[this.previousSlideIndex];
+  }
 };
 
 ClassySlider.prototype.getFinalIndex = function (index) {
@@ -116,9 +157,8 @@ ClassySlider.prototype.getFinalIndex = function (index) {
 
 ClassySlider.prototype.goToSlide = function (index) {
   this.updateState(this.activeSlideIndex, this.getFinalIndex(index));
-  Utils.removeClass(this.activeSlide, 'active');
-  Utils.addClass(this.targetSlide, 'active');
-  this.updateState(this.targetSlideIndex, this.targetSlideIndex);
+  this.updateClasses();
+  this.updateState(this.targetSlideIndex, this.targetSlideIndex, this.activeSlideIndex);
 };
 
 ClassySlider.prototype.goToNext = function () {
@@ -149,18 +189,38 @@ ClassySlider.prototype.addListener = function (elem, index) {
     } else {
       _this.goToSlide(index);
     }
-    _this.setTimer();
+    _this.setTimer(true);
   };
 
   Utils.createListener(elem, this.options.controlTrigger, callback);
 };
 
-ClassySlider.prototype.setTimer = function () {
+ClassySlider.prototype.setTimer = function (instant) {
   var _this = this;
+
+  if (instant) {
+    this.goToNext();
+  }
 
   this.timer = setInterval(function () {
     _this.goToNext();
   }, this.options.timer);
+};
+
+ClassySlider.prototype.initDynamicControls = function () {
+  var prevButton = Utils.createElem('span');
+  Utils.addClass(prevButton, this.options.classPrefix + 'control-previous');
+  Utils.setText(prevButton, 'Previous');
+  this.addListener(prevButton, 'previous');
+  this.prevButton = prevButton;
+  this.options.el.appendChild(prevButton);
+
+  var nextButton = Utils.createElem('span');
+  Utils.addClass(nextButton, this.options.classPrefix + 'control-next');
+  Utils.setText(nextButton, 'Next');
+  this.addListener(nextButton, 'next');
+  this.nextButton = nextButton;
+  this.options.el.appendChild(nextButton);
 };
 
 ClassySlider.prototype.initControls = function () {
@@ -183,26 +243,9 @@ ClassySlider.prototype.initControls = function () {
   }
 };
 
-ClassySlider.prototype.initDynamicControls = function () {
-  var prevButton = Utils.createElem('span');
-  Utils.addClass(prevButton, this.options.classPrefix + 'control-previous');
-  Utils.setText(prevButton, 'Previous');
-  this.addListener(prevButton, 'previous');
-  this.prevButton = prevButton;
-  this.options.el.appendChild(prevButton);
-
-  var nextButton = Utils.createElem('span');
-  Utils.addClass(nextButton, this.options.classPrefix + 'control-next');
-  Utils.setText(nextButton, 'Next');
-  this.addListener(nextButton, 'next');
-  this.nextButton = nextButton;
-  this.options.el.appendChild(nextButton);
-};
-
 ClassySlider.prototype.initSlider = function () {
   this.goToSlide(this.activeSlide);
   this.setTimer();
-  Utils.addClass(this.options.el, 'classy-slider');
 
   if (this.options.controls) {
     this.initControls();
