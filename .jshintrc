@@ -1,7 +1,11 @@
 {
   "globals"  :{
     "ClassySlider": true,
-    "module" :true
+    "module" :true,
+    "suite"  :true,
+    "setup"  :true,
+    "test"   :true,
+    "assert" :true
   },
 
   "bitwise"  :true,

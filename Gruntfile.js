@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       files: [
         'Gruntfile.js',
         'classy-slider.js',
-        //'test/**/*.js',
+        'test/**/*.js',
         'demo/**/*.js'
       ],
       options: {
