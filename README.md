@@ -51,8 +51,10 @@ This slider is classy, so you can create a new instance of it for each slider yo
 4. If you don't already have [Grunt](http://gruntjs.com/) installed, `npm install -g grunt-cli`
 5. `grunt prepare`
 
-Now you are ready.
+_Now you are ready._
 
 To run the project: `grunt run`
 
-While running the site, for tests go to `localhost:8000/test`, for the demo go to `localhost:8000/demo`.
+While running the project go to `localhost:8000/demo` for the demo.
+
+To run the tests: `grunt test`

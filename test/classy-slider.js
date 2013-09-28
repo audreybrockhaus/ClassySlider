@@ -3,7 +3,18 @@ suite('classy-slider', function () {
   var slider;
 
   setup(function () {
-    slider = new ClassySlider();
+    var sliderElem = document.createElement('div');
+    
+    for (var i = 0; i < 5; i++) {
+      var slide = document.createElement('span');
+      sliderElem.appendChild(slide);
+    }
+
+    var opts = {
+      el: sliderElem
+    };
+
+    slider = new ClassySlider(opts);
   });
 
   test('constructor', function () {

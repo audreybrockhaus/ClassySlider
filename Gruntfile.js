@@ -4,7 +4,13 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     mocha: {
-      index: ['test/index.html']
+      test: {
+        src: ['test/index.html'],
+        options: {
+          reporter: 'List',
+          run: true
+        }
+      }
     },
 
     jshint: {
