@@ -73,5 +73,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('prepare', ['node_version', 'sass']);
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('run', ['node_version', 'connect', 'watch']);
+  grunt.registerTask('run', ['node_version', 'sass', 'connect', 'watch']);
 };

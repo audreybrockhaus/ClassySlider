@@ -11,21 +11,21 @@ function ClassySlider(opts) {
   }
 
   this.defaults = {
-    classPrefix: 'classy-slider-',
-    controls: true,
-    controlTrigger: 'click',
-    direction: 'forward',
-      // 'backward'
+    classPrefix    : 'classy-slider-',
+    controls       : true,
+    controlTrigger : 'click',
+    direction      : 'forward',
+                  // 'backward'
     dynamicControls: true,
-    el: Utils.createElem('div'),
-    startFrom: 0,
-    // pauseOnHover
-    timer: 2000,
-    transition: 'fade'
-      // 'slide-' (udlr)
-      // 'cover-' (udlr)
-      // 'reveal-' (udlr)
-      // false
+    el             : Utils.createElem('div'),
+    startFrom      : 0,
+    pauseOnHover   : true,
+    timer          : 2000,
+    transition     : 'fade'
+                  // 'slide-[up|down|left|right]'
+                  // 'cover-[up|down|left|right]'
+                  // 'reveal-[up|down|left|right]'
+                  // false
   };
 
   this.options = opts;
