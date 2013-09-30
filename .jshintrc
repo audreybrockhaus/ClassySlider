@@ -1,6 +1,7 @@
 {
   "globals"  :{
     "ClassySlider": true,
+    "Utils"  :true,
     "module" :true,
     "suite"  :true,
     "setup"  :true,

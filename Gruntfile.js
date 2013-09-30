@@ -7,21 +7,18 @@ module.exports = function (grunt) {
       test: {
         src: ['test/index.html'],
         options: {
-          reporter: 'List',
           run: true
         }
       }
     },
 
     jshint: {
-      files: [
-        'Gruntfile.js',
-        'classy-slider.js',
-        'test/**/*.js',
-        'demo/**/*.js'
-      ],
+      files: ['**/*.js'],
       options: {
-        ignores: ['test/lib/**/*.js'],
+        ignores: [
+          'node_modules/**/*.js',
+          'test/lib/**/*.js'
+        ],
         jshintrc: './.jshintrc'
       }
     },
