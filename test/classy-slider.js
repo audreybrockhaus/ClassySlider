@@ -3,7 +3,7 @@ suite('ClassySlider', function () {
   var slider,
       sliderElem,
       opts = {},
-      slides = [];
+      slides;
 
   setup(function () {
     sliderElem = document.createElement('div');
@@ -18,11 +18,11 @@ suite('ClassySlider', function () {
     slider = new ClassySlider(opts);
 
     var children = Utils.getChildren(sliderElem);
+    slides = [];
 
     for (var j = 0; j < children.length; j++) {
       if (children[j].nodeName === 'DIV') {
         slides.push(children[j]);
-        console.log(children[j]);
       }
     }
   });
