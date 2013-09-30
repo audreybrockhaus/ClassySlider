@@ -31,3 +31,8 @@ $revealUp: '#{$prefix}reveal-up';
 $revealDown: '#{$prefix}reveal-down';
 $revealLeft: '#{$prefix}reveal-left';
 $revealRight: '#{$prefix}reveal-right';
+
+//----------------
+// Classes        
+//----------------
+$longDelay: $duration + $delay;

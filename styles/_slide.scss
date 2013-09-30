@@ -1,127 +1,101 @@
 //-------------------
-// Slide Left        
+// Slide Left/Right  
 //-------------------
+
+#{$slideLeft}, #{$slideRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+  }
+
+  #{$active} {
+    left: 0;
+  }
+}
 
 #{$slideLeft} {
-  overflow-x: hidden;
-
-  #{$slides} {
-    @include transition(left $duration ease $delay);
-    margin: {
-      left: 0;
-      right: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     left: -100%;
-    z-index: 2;
   }
 
   #{$right}, #{$wrapBegin} {
     left: 100%;
   }
-
-  #{$active} {
-    left: 0;
-    z-index: 3;
-  }
 }
-
-//-------------------
-// Slide Right       
-//-------------------
 
 #{$slideRight} {
-  overflow-x: hidden;
-
-  #{$slides} {
-    @include transition(left $duration ease $delay);
-    margin: {
-      left: 0;
-      right: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     left: 100%;
-    z-index: 2;
   }
 
   #{$right}, #{$wrapBegin} {
     left: -100%;
   }
-
-  #{$active} {
-    left: 0;
-    z-index: 3;
-  }
 }
 
 //-------------------
-// Slide Up          
+// Slide Up/Down     
 //-------------------
+
+#{$slideUp}, #{$slideDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+  }
+
+  #{$active} {
+    top: 0;
+  }
+}
 
 #{$slideUp} {
-  overflow-y: hidden;
-
-  #{$slides} {
-    @include transition(top $duration ease $delay);
-    margin: {
-      top: 0;
-      bottom: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     top: -100%;
-    z-index: 2;
   }
 
   #{$right}, #{$wrapBegin} {
     top: 100%;
   }
-
-  #{$active} {
-    top: 0;
-    z-index: 3;
-  }
 }
-
-//-------------------
-// Slide Down        
-//-------------------
 
 #{$slideDown} {
-  overflow-y: hidden;
-
-  #{$slides} {
-    @include transition(top $duration ease $delay);
-    margin: {
-      top: 0;
-      bottom: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     top: 100%;
-    z-index: 2;
   }
 
   #{$right}, #{$wrapBegin} {
     top: -100%;
   }
+}
+
+//-------------------
+// Slide Global      
+//-------------------
+
+#{$slideLeft}, #{$slideRight},
+#{$slideUp}, #{$slideDown} {
+  #{$slides} {
+    display: block;
+    margin: {
+      left: 0;
+      right: 0;
+    }
+    z-index: 1;
+  }
+  
+  #{$left} {
+    z-index: 2;
+  }
 
   #{$active} {
-    top: 0;
     z-index: 3;
   }
+
+  #{$wrapEnd} {
+    @include delay($longDelay);
+  }
+
 }
+

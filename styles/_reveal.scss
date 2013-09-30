@@ -1,108 +1,74 @@
 //-------------------
-// Reval Left        
+// Reval Left/Right  
 //-------------------
+
+#{$revealLeft}, #{$revealRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+  }
+
+  #{$right}, #{$wrapBegin} {
+    left: 0;
+  }
+
+  #{$active} {
+    left: 0;
+  }
+}
 
 #{$revealLeft} {
-  overflow-x: hidden;
-
-  #{$slides} {
-    @include transition(left $duration ease $delay);
-    margin: {
-      left: 0;
-      right: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     left: -100%;
-    z-index: 3;
-  }
-
-  #{$right}, #{$wrapEnd} {
-    left: 0;
-  }
-
-  #{$active} {
-    left: 0;
-    z-index: 2;
   }
 }
-
-//-------------------
-// Reveal Right      
-//-------------------
 
 #{$revealRight} {
-  overflow-x: hidden;
-
-  #{$slides} {
-    @include transition(left $duration ease $delay);
-    margin: {
-      left: 0;
-      right: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     left: 100%;
-    z-index: 3;
-  }
-
-  #{$right}, #{$wrapEnd} {
-    left: 0;
-  }
-
-  #{$active} {
-    left: 0;
-    z-index: 2;
   }
 }
 
 //-------------------
-// Reveal Up         
+// Reveal Up/Down    
 //-------------------
+
+#{$revealUp}, #{$revealDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+  }
+
+  #{$right}, #{$wrapBegin} {
+    top: 0;
+  }
+
+  #{$active} {
+    top: 0;
+  }
+}
 
 #{$revealUp} {
-  overflow-y: hidden;
-
-  #{$slides} {
-    @include transition(top $duration ease $delay);
-    margin: {
-      top: 0;
-      bottom: 0;
-    }
-    display: block;
-    z-index: 1;
-  }
-
   #{$left} {
     top: -100%;
-    z-index: 3;
   }
+}
 
-  #{$right}, #{$wrapEnd} {
-    top: 0;
-  }
-
-  #{$active} {
-    top: 0;
-    z-index: 2;
+#{$revealDown} {
+  #{$left} {
+    top: 100%;
   }
 }
 
 //-------------------
-// Reveal Down       
+// Reveal Global     
 //-------------------
 
-#{$revealDown} {
-  overflow-y: hidden;
-
+#{$revealLeft}, #{$revealRight},
+#{$revealUp}, #{$revealDown} {
   #{$slides} {
-    @include transition(top $duration ease $delay);
     margin: {
       top: 0;
       bottom: 0;
@@ -112,17 +78,10 @@
   }
 
   #{$left} {
-    top: 100%;
     z-index: 3;
   }
 
-  #{$right}, #{$wrapEnd} {
-    top: 0;
-  }
-
   #{$active} {
-    top: 0;
     z-index: 2;
   }
 }
-

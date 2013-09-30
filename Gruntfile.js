@@ -7,6 +7,7 @@ module.exports = function (grunt) {
       test: {
         src: ['test/index.html'],
         options: {
+          reporter: 'List',
           run: true
         }
       }
