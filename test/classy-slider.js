@@ -1,3 +1,5 @@
+/* jshint newcap: false */
+
 suite('ClassySlider', function () {
     
   var slider,
@@ -15,7 +17,7 @@ suite('ClassySlider', function () {
 
     opts.el = sliderElem;
 
-    slider = new ClassySlider(opts);
+    slider = ClassySlider(opts);
 
     var children = Utils.getChildren(sliderElem);
     slides = [];
@@ -33,49 +35,66 @@ suite('ClassySlider', function () {
 
   test('updateClass', function () {
     for (var i = 0; i < slides.length; i++) {
-      assert.strictEqual(slides[i].className.indexOf('classy-slider-'), 1);
+      assert.strictEqual(slides[i].className.indexOf(slider.options.classPrefix), 1);
     }
   });
 
   test('initClasses', function () {
-    var classes = sliderElem.className;
-    assert.strictEqual(classes.indexOf('classy-slider'), 1);
+    var classes = sliderElem.className.split(' ');
+    assert.isTrue(classes.indexOf('classy-slider') > -1);
+    assert.isTrue(classes.indexOf(slider.options.classPrefix + slider.options.transition) > -1);
   });
 
   test('initVars', function () {
     var options = Utils.extend(slider.defaults, opts);
 
     assert.strictEqual(slider.slides.length, slides.length);
-
-    for (var key in slider.options) {
-      if (options.hasOwnProperty(key)) {
-        assert.strictEqual(slider.options[key], options[key]);
-      }
-    }
-  });
-
-  test('updateClasses', function () {
-    assert.strictEqual(true, false);
+    assert.deepEqual(slider.options, options);
   });
 
   test('updateState', function () {
-    assert.strictEqual(true, false);
+    slider.updateState(1, 2, 3);
+    assert.strictEqual(slider.activeSlideIndex, 1);
+    assert.strictEqual(slider.targetSlideIndex, 2);
+    assert.strictEqual(slider.previousSlideIndex, 3);
   });
 
   test('getFinalIndex', function () {
-    assert.strictEqual(true, false);
+    assert.strictEqual(slider.getFinalIndex(1), 1);
+    assert.strictEqual(slider.getFinalIndex(-1), 4);
+    assert.strictEqual(slider.getFinalIndex(6), 0);
   });
 
   test('goToSlide', function () {
-    assert.strictEqual(true, false);
+    slider.goToSlide(1);
+    assert.strictEqual(slider.activeSlideIndex, 1);
+    assert.strictEqual(slider.targetSlideIndex, 1);
+    assert.strictEqual(slider.previousSlideIndex, 0);
+
+    setTimeout(function () {
+      assert.strictEqual(slides[1].className, ' ' + slider.options.classPrefix + 'active');
+      assert.strictEqual(slides[0].className, ' ' + slider.options.classPrefix + 'left');
+    }, 100);
   });
 
   test('goToNext', function () {
-    assert.strictEqual(true, false);
+    slider.goToSlide(1);
+    slider.goToNext();
+    assert.strictEqual(slider.activeSlideIndex, 2);
+
+    slider.options.direction = 'backward';
+    slider.goToNext();
+    assert.strictEqual(slider.activeSlideIndex, 1);
   });
 
   test('goToPrevious', function () {
-    assert.strictEqual(true, false);
+    slider.goToSlide(1);
+    slider.goToPrevious();
+    assert.strictEqual(slider.activeSlideIndex, 0);
+
+    slider.options.direction = 'backward';
+    slider.goToPrevious();
+    assert.strictEqual(slider.activeSlideIndex, 1);
   });
 
   test('addListener', function () {
@@ -91,6 +110,10 @@ suite('ClassySlider', function () {
   });
 
   test('initControls', function () {
+    assert.strictEqual(true, false);
+  });
+
+  test('pauseOnHover', function () {
     assert.strictEqual(true, false);
   });
 
