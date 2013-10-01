@@ -65,16 +65,19 @@ suite('ClassySlider', function () {
     assert.strictEqual(slider.getFinalIndex(6), 0);
   });
 
-  test('goToSlide', function () {
+  test('goToSlide', function (done) {
+    this.timeout(2100);
     slider.goToSlide(1);
     assert.strictEqual(slider.activeSlideIndex, 1);
     assert.strictEqual(slider.targetSlideIndex, 1);
     assert.strictEqual(slider.previousSlideIndex, 0);
 
-    setTimeout(function () {
+    done();
+    /*setTimeout(function () {
       assert.strictEqual(slides[1].className, ' ' + slider.options.classPrefix + 'active');
       assert.strictEqual(slides[0].className, ' ' + slider.options.classPrefix + 'left');
-    }, 100);
+      done();
+    }, 2000);*/
   });
 
   test('goToNext', function () {
@@ -98,11 +101,29 @@ suite('ClassySlider', function () {
   });
 
   test('addListener', function () {
-    assert.strictEqual(true, false);
+    var elem = document.createElement('a');
+
+    slider.addListener(elem, 1);
+    elem.dispatchEvent('click');
+    assert.strictEqual(slider.activeSlideIndex, 1);
   });
 
-  test('setTimer', function () {
-    assert.strictEqual(true, false);
+  test('setTimer', function (done) {
+    this.timeout(slider.options.timer + 200);
+
+    slider.options.timer = 100;
+
+    slider.goToSlide(1);
+    slider.setTimer(true);
+    assert.strictEqual(slider.activeSlideIndex, 2);
+
+    clearInterval(slider.timer);
+
+    slider.setTimer();
+    setTimeout(function () {
+      assert.strictEqual(slider.activeSlideIndex, 3);
+      done();
+    }, slider.options.timer);
   });
 
   test('initDynamicControls', function () {
