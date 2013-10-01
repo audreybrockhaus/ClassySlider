@@ -8,6 +8,7 @@
     "test"   :true,
     "assert" :true
   },
+  "browser"  :true,
 
   "bitwise"  :true,
   "camelcase":true,

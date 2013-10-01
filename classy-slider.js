@@ -213,9 +213,25 @@ ClassySlider.prototype.initControls = function () {
   }
 };
 
+ClassySlider.prototype.pauseOnHover = function () {
+  var _this = this;
+
+  Utils.createListener(this.options.el, 'mouseover', function () {
+    clearTimeout(_this.timer);
+  });
+
+  Utils.createListener(this.options.el, 'mouseout', function () {
+    _this.setTimer();
+  });
+};
+
 ClassySlider.prototype.initSlider = function () {
   this.goToSlide(this.activeSlide);
   this.setTimer();
+
+  if (this.options.pauseOnHover) {
+    this.pauseOnHover();
+  }
 
   if (this.options.controls) {
     this.initControls();
