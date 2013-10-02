@@ -177,20 +177,28 @@ ClassySlider.prototype.setTimer = function (instant) {
   }, this.options.timer);
 };
 
-ClassySlider.prototype.initDynamicControls = function () {
+ClassySlider.prototype.initPrevBtn = function () {
   var prevButton = Utils.createElem('span');
   Utils.addClass(prevButton, this.options.classPrefix + 'control-previous');
   Utils.setText(prevButton, 'Previous');
-  this.addListener(prevButton, 'previous');
   this.prevButton = prevButton;
-  this.options.el.appendChild(prevButton);
+};
 
+ClassySlider.prototype.initNextBtn = function () {
   var nextButton = Utils.createElem('span');
   Utils.addClass(nextButton, this.options.classPrefix + 'control-next');
   Utils.setText(nextButton, 'Next');
-  this.addListener(nextButton, 'next');
   this.nextButton = nextButton;
-  this.options.el.appendChild(nextButton);
+};
+
+ClassySlider.prototype.initDynamicControls = function () {
+  this.initPrevBtn();
+  this.addListener(this.prevButton, 'previous');
+  this.options.el.appendChild(this.prevButton);
+
+  this.initNextBtn();
+  this.addListener(this.nextButton, 'next');
+  this.options.el.appendChild(this.nextButton);
 };
 
 ClassySlider.prototype.initControls = function () {
@@ -218,10 +226,12 @@ ClassySlider.prototype.pauseOnHover = function () {
 
   Utils.createListener(this.options.el, 'mouseover', function () {
     clearTimeout(_this.timer);
+    _this.timerClear = true;
   });
 
   Utils.createListener(this.options.el, 'mouseout', function () {
     _this.setTimer();
+    _this.timerClear = false;
   });
 };
 

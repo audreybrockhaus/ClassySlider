@@ -22,6 +22,21 @@
       return obj1;
     },
 
+    fireEvent: function (obj, evt) {
+      var fireOnThis = obj,
+          evObj;
+
+      if (document.createEvent) {
+        evObj = document.createEvent('MouseEvents');
+        evObj.initEvent(evt, true, false);
+        fireOnThis.dispatchEvent(evObj);
+      } else if (document.createEventObject) {
+        //IE
+        evObj = document.createEventObject();
+        fireOnThis.fireEvent('on' + evt, evObj);
+      }
+    },
+
     getChildren: function (elem) {
       var children = [];
 
@@ -30,6 +45,14 @@
       }
 
       return children;
+    },
+
+    getText: function (elem) {
+      if ('innerText' in elem) {
+        return elem.innerText;
+      } else {
+        return elem.textContent;
+      }
     },
 
     setText: function (elem, string) {

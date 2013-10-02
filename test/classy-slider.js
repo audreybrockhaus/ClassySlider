@@ -5,7 +5,8 @@ suite('ClassySlider', function () {
   var slider,
       sliderElem,
       opts = {},
-      slides;
+      slides,
+      Utils = window.Utils;
 
   setup(function () {
     sliderElem = document.createElement('div');
@@ -100,12 +101,29 @@ suite('ClassySlider', function () {
     assert.strictEqual(slider.activeSlideIndex, 1);
   });
 
-  test('addListener', function () {
-    var elem = document.createElement('a');
+  test('addListener', function (done) {
+    this.timeout(300);
 
-    slider.addListener(elem, 1);
-    elem.dispatchEvent('click');
-    assert.strictEqual(slider.activeSlideIndex, 1);
+    slider.options.timer = 100;
+    
+    var elem = document.createElement('a');
+    document.body.appendChild(elem);
+
+    setTimeout(function () {
+      slider.addListener(elem, 1);
+      Utils.fireEvent(elem, 'click');
+      assert.strictEqual(slider.activeSlideIndex, 2);
+
+      slider.addListener(elem, 'next');
+      Utils.fireEvent(elem, 'click');
+      assert.strictEqual(slider.activeSlideIndex, 3);
+      
+      slider.addListener(elem, 'previous');
+      Utils.fireEvent(elem, 'click');
+      assert.strictEqual(slider.activeSlideIndex, 2);
+
+      done();
+    }, 10);
   });
 
   test('setTimer', function (done) {
@@ -126,19 +144,43 @@ suite('ClassySlider', function () {
     }, slider.options.timer);
   });
 
+  test('initPrevBtn', function () {
+    slider.initPrevBtn();
+
+    assert.strictEqual(slider.prevButton.className, ' ' + slider.options.classPrefix + 'control-previous');
+    assert.strictEqual(slider.prevButton.nodeName, 'SPAN');
+    assert.strictEqual(Utils.getText(slider.prevButton), 'Previous');
+  });
+
+  test('initNextBtn', function () {
+    slider.initNextBtn();
+
+    assert.strictEqual(slider.nextButton.className, ' ' + slider.options.classPrefix + 'control-next');
+    assert.strictEqual(slider.nextButton.nodeName, 'SPAN');
+    assert.strictEqual(Utils.getText(slider.nextButton), 'Next');
+  });
+
   test('initDynamicControls', function () {
-    assert.strictEqual(true, false);
+    slider.goToSlide(1);
+    
+    Utils.fireEvent(slider.prevButton, 'click');
+    assert.strictEqual(slider.activeSlideIndex, 0);
+
+    Utils.fireEvent(slider.nextButton, 'click');
+    assert.strictEqual(slider.activeSlideIndex, 1);
   });
 
   test('initControls', function () {
-    assert.strictEqual(true, false);
+    var controls = Utils.getChildren(slider.controls);
+    Utils.fireEvent(controls[1], 'click');
+    assert.strictEqual(slider.activeSlideIndex, 2);
   });
 
   test('pauseOnHover', function () {
-    assert.strictEqual(true, false);
-  });
+    Utils.fireEvent(slider.options.el, 'mouseover');
+    assert.isTrue(slider.timerClear);
 
-  test('initSlider', function () {
-    assert.strictEqual(true, false);
+    Utils.fireEvent(slider.options.el, 'mouseout');
+    assert.isFalse(slider.timerClear);
   });
 });

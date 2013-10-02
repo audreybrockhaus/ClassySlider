@@ -7,7 +7,7 @@ module.exports = function (grunt) {
       test: {
         src: ['test/index.html'],
         options: {
-          reporter: 'List',
+          //reporter: 'List',
           run: true
         }
       }
@@ -51,13 +51,12 @@ module.exports = function (grunt) {
     watch: {
       scripts: {
         files: ['**/*.js'],
-        tasks: ['jshint']
+        tasks: ['test']
       },
       scss: {
         files: ['styles/**/*.scss'],
         tasks: ['sass'],
         options: {
-          //atBegin: true,
           spawn: false
         }
       }
@@ -73,5 +72,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('prepare', ['node_version', 'sass']);
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('run', ['node_version', 'sass', 'connect', 'watch']);
+  grunt.registerTask('run', ['node_version', 'sass', 'jshint', 'connect', 'watch']);
 };
