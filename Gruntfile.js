@@ -7,6 +7,7 @@ module.exports = function (grunt) {
       test: {
         src: ['test/index.html'],
         options: {
+          log: true,
           reporter: 'Nyan',
           run: true
         }
@@ -72,5 +73,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('prepare', ['node_version', 'sass']);
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('run', ['node_version', 'sass', 'jshint', 'connect', 'watch']);
+  grunt.registerTask('run', ['node_version', 'sass', 'test', 'connect', 'watch']);
 };
