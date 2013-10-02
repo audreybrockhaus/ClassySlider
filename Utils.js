@@ -31,7 +31,6 @@
         evObj.initEvent(evt, true, false);
         fireOnThis.dispatchEvent(evObj);
       } else if (document.createEventObject) {
-        //IE
         evObj = document.createEventObject();
         fireOnThis.fireEvent('on' + evt, evObj);
       }
