@@ -3,10 +3,9 @@
 
 ## Scope:
 * Rotate N slides of HTML in content
-* Auto rotate - adjustable (global)
-* Click link to rotate - direct & dynamic
-* Define transition type (global)
-* Display controls
+* Auto rotate - adjustable
+* Define transition type
+* Display controls - direct & dynamic
 
 ## Options:
 
@@ -14,16 +13,20 @@ See all available options and their defaults below:
 
 ```javascript
 var options = {
-  classPrefix: 'classy-slider-', // Any strong is valid
-  controls: true,
-  controlTrigger: 'click', // Any event trigger is valid
-  direction: 'forward', // 'backward' is also valid
+  classPrefix    : 'classy-slider-',
+  controls       : true,
+  controlTrigger : 'click',
+  direction      : 'forward',
+                // 'backward'
   dynamicControls: true,
-  el: Utils.createElem('div'), // Pass the element to turn into a slider
-  startFrom: 0, // Index to start slider at
-  timer: 2000, // Time between slides
-  transition: 'fade' // Also accepts: 'slide-up|down|left|right',
-    // 'reveal-up|down|left|right', 'cover-|up|down|left|right'
+  el             : Utils.createElem('div'),
+  startFrom      : 0,
+  pauseOnHover   : true,
+  timer          : 2000,
+  transition     : 'fade'
+                 // 'slide-[up|down|left|right]'
+                 // 'reveal-up|down|left|right' 
+                 // 'cover-|up|down|left|right'
 };
 ```
 
