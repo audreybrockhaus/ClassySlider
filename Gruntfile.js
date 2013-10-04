@@ -72,6 +72,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('prepare', ['node_version', 'sass']);
+  grunt.registerTask('deploy', ['node_version', 'sass', 'jshint', 'mocha']);
   grunt.registerTask('test', ['jshint', 'mocha']);
   grunt.registerTask('run', ['node_version', 'sass', 'test', 'connect', 'watch']);
 };
