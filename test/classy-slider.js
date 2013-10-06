@@ -163,9 +163,11 @@ suite('ClassySlider', function () {
   test('initDynamicControls', function () {
     slider.goToSlide(1);
     
+    assert.ok(slider.nextButton);
     Utils.fireEvent(slider.prevButton, 'click');
     assert.strictEqual(slider.activeSlideIndex, 0);
 
+    assert.ok(slider.nextButton);
     Utils.fireEvent(slider.nextButton, 'click');
     assert.strictEqual(slider.activeSlideIndex, 1);
   });
