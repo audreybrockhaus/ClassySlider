@@ -3,6 +3,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    clean: ['./out'],
+
     mocha: {
       test: {
         src: ['test/index.html'],
@@ -14,6 +16,7 @@ module.exports = function (grunt) {
       }
     },
 
+    
     jshint: {
       files: ['**/*.js'],
       options: {
