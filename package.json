@@ -13,5 +13,8 @@
     "grunt-node-version": "~1.0.0",
     "docpad": "~6.53.1",
     "docpad-plugin-ghpages": "~2.4.0"
+  },
+  "scripts": {
+    "test": "grunt test"
   }
 }

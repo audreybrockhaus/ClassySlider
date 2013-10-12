@@ -117,7 +117,7 @@ ClassySlider.prototype.getFinalIndex = function (index) {
   if (this.slides[index]) {
     return index;
   } else if (index < 0) {
-    return this.slides.length - 2;
+    return this.slides.length - 1;
   } else {
     return 0;
   }
