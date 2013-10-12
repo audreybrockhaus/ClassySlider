@@ -1,4 +1,7 @@
 # ClassySlider
+[![Dependency Status](https://gemnasium.com/jking90/ClassySlider.png)](https://gemnasium.com/jking90/ClassySlider)
+[![Build Status](https://travis-ci.org/jking90/ClassySlider.png?branch=master)](https://travis-ci.org/jking90/ClassySlider)
+
 
 ## Scope:
 * Rotate N slides of HTML in content
