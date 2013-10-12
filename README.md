@@ -1,15 +1,61 @@
-#YAjS
+# ClassySlider
 
-##[Yet Another jQuery Slider](http://git.io/YAjS "YAjS Project Page")
-
-###Scope:
+## Scope:
 * Rotate N slides of HTML in content
-* Auto rotate - adjustable (global)
-* Click link to rotate - direct & dynamic
-* Define transition type (global)
-* Display controls
+* Auto rotate - adjustable
+* Define transition type
+* Display controls - direct & dynamic
 
-###Usage:
-Will turn any HTML element with the class 'slider' into a jQuery slider, with its children as the slides. Whichever child element has the class 'active' will be displayed first; however, the 'active' class is not required. If the 'active' class is not present there will be a moment where no slides appear while the JS is loading.
+## Options:
 
-You can use this with as many sliders as you like on a page & as many slides in each slider as you'd like.
+See all available options and their defaults below:
+
+```javascript
+var options = {
+  classPrefix    : 'classy-slider-',
+  controls       : true,
+  controlTrigger : 'click',
+  direction      : 'forward',
+                // 'backward'
+  dynamicControls: true,
+  el             : Utils.createElem('div'),
+  startFrom      : 0,
+  pauseOnHover   : true,
+  timer          : 2000,
+  transition     : 'fade'
+                 // 'slide-[up|down|left|right]'
+                 // 'reveal-up|down|left|right' 
+                 // 'cover-|up|down|left|right'
+};
+```
+
+## Implementation
+
+This slider is classy, so you can create a new instance of it for each slider you want.
+
+```javascript
+(function () {
+  var opts = {
+    controls: false,
+    el: document.getElementById('slider'),
+    timer: 4000
+  };
+
+  var slider = new ClassySlider(opts);
+}());
+```
+
+## Contributing
+
+1. `git clone git@github.com:jking90/ClassySlider.git`
+2. `cd ClassySlider`
+3. `npm install`
+4. If you don't already have [Grunt](http://gruntjs.com/) installed, `npm install -g grunt-cli`
+
+_Now you are ready._
+
+To run the project: `grunt run`
+
+While running the project go to `localhost:8000/demo` for the demo.
+
+To run the tests: `grunt test`

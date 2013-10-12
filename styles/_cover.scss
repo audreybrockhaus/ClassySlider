@@ -1,0 +1,96 @@
+//-------------------
+// Cover Left/Right  
+//-------------------
+
+#{$coverLeft}, #{$coverRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+  }
+
+  #{$active} {
+    left: 0;
+    z-index: 3;
+  }
+}
+
+#{$coverLeft} {
+  #{$left} {
+    left: 0;
+  }
+
+  #{$right}, #{$wrapBegin} {
+    left: 100%;
+  }
+}
+
+#{$coverRight} {
+  #{$left} {
+    left: 0;
+  }
+
+  #{$right}, #{$wrapEnd} {
+    left: -100%;
+  }
+}
+
+//-------------------
+// Cover Up/Down     
+//-------------------
+
+#{$coverUp}, #{$coverDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+  }
+  
+  #{$left} {
+    top: 0;
+  }
+
+  #{$active} {
+    top: 0;
+  }
+}
+
+#{$coverUp} {
+  #{$right}, #{$wrapEnd} {
+    top: 100%;
+  }
+}
+
+#{$coverDown} {
+  #{$right}, #{$wrapEnd} {
+    top: -100%;
+  }
+}
+
+//-------------------
+// Cover Global      
+//-------------------
+
+#{$coverRight}, #{$coverLeft},
+#{$coverUp}, #{$coverDown} {
+  #{$slides} {
+    margin: {
+      left: 0;
+      right: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+  
+  #{$left}:last-child {
+    z-index: 2;
+  }
+
+  #{$active} {
+    z-index: 3;
+  }
+
+  #{$wrapEnd} {
+    @include delay($longDelay);
+  }
+}

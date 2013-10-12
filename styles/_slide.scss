@@ -1,0 +1,101 @@
+//-------------------
+// Slide Left/Right  
+//-------------------
+
+#{$slideLeft}, #{$slideRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+  }
+
+  #{$active} {
+    left: 0;
+  }
+}
+
+#{$slideLeft} {
+  #{$left} {
+    left: -100%;
+  }
+
+  #{$right}, #{$wrapBegin} {
+    left: 100%;
+  }
+}
+
+#{$slideRight} {
+  #{$left} {
+    left: 100%;
+  }
+
+  #{$right}, #{$wrapBegin} {
+    left: -100%;
+  }
+}
+
+//-------------------
+// Slide Up/Down     
+//-------------------
+
+#{$slideUp}, #{$slideDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+  }
+
+  #{$active} {
+    top: 0;
+  }
+}
+
+#{$slideUp} {
+  #{$left} {
+    top: -100%;
+  }
+
+  #{$right}, #{$wrapBegin} {
+    top: 100%;
+  }
+}
+
+#{$slideDown} {
+  #{$left} {
+    top: 100%;
+  }
+
+  #{$right}, #{$wrapBegin} {
+    top: -100%;
+  }
+}
+
+//-------------------
+// Slide Global      
+//-------------------
+
+#{$slideLeft}, #{$slideRight},
+#{$slideUp}, #{$slideDown} {
+  #{$slides} {
+    display: block;
+    margin: {
+      left: 0;
+      right: 0;
+    }
+    z-index: 1;
+  }
+  
+  #{$left} {
+    z-index: 2;
+  }
+
+  #{$active} {
+    z-index: 3;
+  }
+
+  #{$wrapEnd} {
+    @include delay($longDelay);
+  }
+
+}
+

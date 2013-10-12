@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>ClassySlider Tests</title>
+
+    <link rel="stylesheet" href="lib/mocha/mocha.css" />
+
+  </head>
+
+  <body>
+    <!-- Utils -->
+    <script src="../Utils.js"></script>
+
+    <!-- Testing libraries -->
+    <script src="lib/chai/chai.js"></script>
+    <script src="lib/mocha/mocha.js"></script>
+    <script src="lib/sinon/sinon-1.5.0.js"></script>
+
+    <script>
+      window.assert = chai.assert;
+      window.suite = mocha.suite;
+    </script>
+
+    <!-- ClassySlider -->
+    <script src="../classy-slider.js"></script>
+    <div id="mocha"></div>
+    <div id="test"></div>
+
+    <script>
+      mocha.setup('tdd');
+    </script>
+
+    <!-- tests -->
+    <script src="classy-slider.js"></script>
+
+    <script>
+      if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        mocha.run();
+      }
+    </script>
+  </body>
+</html>

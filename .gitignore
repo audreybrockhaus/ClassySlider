@@ -1,1 +1,5 @@
+*.log
+*.swp
+*.css
 .DS_Store
+node_modules/

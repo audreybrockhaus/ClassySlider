@@ -1,0 +1,87 @@
+//-------------------
+// Reval Left/Right  
+//-------------------
+
+#{$revealLeft}, #{$revealRight} {
+  overflow-x: hidden;
+
+  #{$slides} {
+    @include transition(left $duration ease $delay);
+  }
+
+  #{$right}, #{$wrapBegin} {
+    left: 0;
+  }
+
+  #{$active} {
+    left: 0;
+  }
+}
+
+#{$revealLeft} {
+  #{$left} {
+    left: -100%;
+  }
+}
+
+#{$revealRight} {
+  #{$left} {
+    left: 100%;
+  }
+}
+
+//-------------------
+// Reveal Up/Down    
+//-------------------
+
+#{$revealUp}, #{$revealDown} {
+  overflow-y: hidden;
+
+  #{$slides} {
+    @include transition(top $duration ease $delay);
+  }
+
+  #{$right}, #{$wrapBegin} {
+    top: 0;
+  }
+
+  #{$active} {
+    top: 0;
+  }
+}
+
+#{$revealUp} {
+  #{$left} {
+    top: -100%;
+  }
+}
+
+#{$revealDown} {
+  #{$left} {
+    top: 100%;
+  }
+}
+
+//-------------------
+// Reveal Global     
+//-------------------
+
+#{$revealLeft}, #{$revealRight},
+#{$revealUp}, #{$revealDown} {
+  #{$slides} {
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
+    display: block;
+    z-index: 1;
+  }
+
+  #{$left} {
+    z-index: 3;
+  }
+
+  #{$active} {
+    z-index: 2;
+  }
+}

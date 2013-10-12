@@ -1,0 +1,44 @@
+@import 'options';
+@import 'variables';
+
+#{$slider} {
+  height: 200px;
+  margin: 100px auto 0;
+  width: 500px;
+}
+
+#{$slides} {
+  height: 200px;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  background: red;
+  list-style: none;
+
+  &:nth-child(2) {background:green;}
+  &:nth-child(3) {background:yellow;}
+  &:nth-child(4) {background:aqua;}
+  &:nth-child(5) {background:brown;}
+  &:nth-child(6) {background:gray;}
+  &:nth-child(7) {background:purple;}
+  &:nth-child(8) {background:orange;}
+}
+
+#{$controls} {
+  display: none;
+}
+
+#{$previous} {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+}
+
+#{$next} {
+  position: absolute;
+  bottom: -25px;
+  left: 80%;
+}

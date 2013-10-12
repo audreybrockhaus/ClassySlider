@@ -1,0 +1,38 @@
+//----------------
+// Classes        
+//----------------
+
+// Slides
+$slider: '.classy-slider';
+$left: '#{$prefix}left';
+$right: '#{$prefix}right';
+$active: '#{$prefix}active';
+$wrapBegin: '#{$prefix}wrap-begin';
+$wrapEnd: '#{$prefix}wrap-end';
+$hidden: '#{$left}, #{$right}';
+$slides: '#{$left}, #{$right}, #{$active}';
+
+// Controls
+$controls: '#{$prefix}controls';
+$next: '#{$prefix}control-next';
+$previous: '#{$prefix}control-previous';
+
+// Transitions
+$fade: '#{$prefix}fade';
+$slideUp: '#{$prefix}slide-up';
+$slideDown: '#{$prefix}slide-down';
+$slideLeft: '#{$prefix}slide-left';
+$slideRight: '#{$prefix}slide-right';
+$coverUp: '#{$prefix}cover-up';
+$coverDown: '#{$prefix}cover-down';
+$coverLeft: '#{$prefix}cover-left';
+$coverRight: '#{$prefix}cover-right';
+$revealUp: '#{$prefix}reveal-up';
+$revealDown: '#{$prefix}reveal-down';
+$revealLeft: '#{$prefix}reveal-left';
+$revealRight: '#{$prefix}reveal-right';
+
+//----------------
+// Classes        
+//----------------
+$longDelay: $duration + $delay;
