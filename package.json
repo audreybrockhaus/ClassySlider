@@ -5,10 +5,10 @@
   "dependencies": {
     "grunt-mocha": "~0.4.1",
     "grunt": "~0.4.1",
-    "mocha": "~0.2.0",
-    "chai": "~1.7.2",
+    "mocha": "~1.13",
+    "chai": "~1.8",
     "grunt-contrib-jshint": "~0.6.4",
-    "grunt-sass": "~0.6.1",
+    "grunt-sass": "~0.7",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-node-version": "~1.0.0",
     "docpad": "~6.53.1",
