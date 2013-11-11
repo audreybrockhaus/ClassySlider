@@ -11,7 +11,6 @@ function ClassySlider(opts) {
   }
 
   this.defaults = {
-    /* @todo: add more options */
     classPrefix    : 'classy-slider-',
     controls       : true,
     controlTrigger : 'click',
