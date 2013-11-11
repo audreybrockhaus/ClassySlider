@@ -4,7 +4,6 @@
       return document.createElement(elem);
     },
 
-    // @todo: write another utility function
     createListener: function (elem, evnt, callback) {
       if ('addEventListener' in elem) {
         elem.addEventListener(evnt, callback);
