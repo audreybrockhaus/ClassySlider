@@ -1,6 +1,7 @@
 # ClassySlider
 [![Dependency Status](https://gemnasium.com/jking90/ClassySlider.png)](https://gemnasium.com/jking90/ClassySlider)
 [![Build Status](https://travis-ci.org/jking90/ClassySlider.png?branch=master)](https://travis-ci.org/jking90/ClassySlider)
+[![Code Climate](https://codeclimate.com/repos/5307d91a6956801c2d00200f/badges/a3e1c119eaf730203fb9/gpa.png)](https://codeclimate.com/repos/5307d91a6956801c2d00200f/feed)
 [![Gittip donate button](http://img.shields.io/gittip/jking90.png)](https://www.gittip.com/jking90/ "Donate weekly to this project using Gittip")
 
 
